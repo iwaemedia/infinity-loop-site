@@ -1,0 +1,602 @@
+<html><head><meta charset="utf-8"/><style id="infinity-loop-standard-css">/* Infinity Loop – standard academic formatting */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Garamond","Georgia","Times New Roman",serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: #222222;
+  background-color: #ffffff;
+}
+
+/* Word-export paragraphs */
+p, p.MsoNormal {
+  margin-top: 0;
+  margin-bottom: 0.85em;
+  text-align: justify;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Garamond","Georgia","Times New Roman",serif;
+  font-weight: bold;
+  margin-top: 1.25em;
+  margin-bottom: 0.6em;
+  line-height: 1.25;
+}
+
+/* Optional: chapter title style if using a dedicated class */
+h1.chapter-title {
+  font-size: 20pt;
+  text-align: center;
+  text-transform: none;
+}
+
+/* Lists */
+ul, ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.85em;
+  padding-left: 1.5em;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.25em 0;
+}
+
+table td, table th {
+  border: 1px solid #444444;
+  padding: 4px 6px;
+  vertical-align: top;
+}
+
+/* Make table headings a bit bolder */
+table th {
+  font-weight: 600;
+}
+
+/* Footnotes / smaller text */
+.small, .footnote, .endnote {
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+/* Links */
+a {
+  color: #1d4ed8;
+}
+
+/* Page-like max width for better standalone reading */
+body > div, body > p, body > table {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<!--Injected by ebook formatter-->
+<style type="text/css">/* Base typography */
+body {
+font-family: 'Georgia', 'Times New Roman', serif;
+line-height: 1.7;
+margin: 0;
+padding: 2 em;
+color: #2 c 3 e 50;
+background-color: #fefefe;
+max-width: 800 px;
+margin: 0 auto;
+text-align: justify;
+font-size: 17 px;
+}
+/* Headings */
+h 1 {
+font-size: 2.4 em;
+color: #2 c 3 e 50;
+border-bottom: 3 px solid #3498 db;
+padding-bottom: 0.3 em;
+margin: 1.5 em 0.8 em 0;
+text-align: center;
+font-weight: normal;
+letter-spacing: -0.5 px;
+}
+h 2 {
+font-size: 1.9 em;
+color: #34495 e;
+border-bottom: 2 px solid #bdc 3 c 7;
+padding-bottom: 0.2 em;
+margin: 1.8 em 0.8 em 0;
+font-weight: normal;
+}
+h 3 {
+font-size: 1.5 em;
+color: #34495 e;
+margin: 1.5 em 0.5 em 0;
+font-weight: normal;
+}
+h 4, h 5, h 6 {
+font-size: 1.2 em;
+color: #34495 e;
+margin: 1.2 em 0.5 em 0;
+}
+/* Paragraphs and text */
+p {
+margin-bottom: 1.2 em;
+text-align: justify;
+hyphens: auto;
+-webkit-hyphens: auto;
+-ms-hyphens: auto;
+}. Chapter-intro {
+font-style: italic;
+color: #7 f 8 c 8 d;
+border-left: 4 px solid #3498 db;
+padding-left: 1.5 em;
+margin: 2 em 0;
+font-size: 1.1 em;
+}
+/* Blockquotes and highlights */
+blockquote {
+border-left: 4 px solid #3498 db;
+margin: 2 em 0;
+padding: 1.5 em 2 em;
+background-color: #f 8 f 9 fa;
+font-style: italic;
+color: #555;
+}. Highlight {
+background-color: #fff 3 cd;
+padding: 1 em;
+border-left: 4 px solid #ffc 107;
+margin: 1.5 em 0;
+}
+/* Code and preformatted text */
+code {
+background-color: #ecf 0 f 1;
+padding: 0.2 em 0.4 em;
+border-radius: 3 px;
+font-family: 'Courier New', monospace;
+font-size: 0.9 em;
+color: #c 7254 e;
+}
+pre {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+padding: 1.5 em;
+border-radius: 5 px;
+overflow-x: auto;
+font-family: 'Courier New', monospace;
+line-height: 1.4;
+margin: 1.5 em 0;
+border-left: 4 px solid #3498 db;
+}
+/* Lists */
+ul, ol {
+margin: 1.5 em 0;
+padding-left: 2 em;
+}
+li {
+margin-bottom: 0.5 em;
+text-align: left;
+}. Reference-list {
+margin: 2 em 0;
+padding-left: 0;
+}. Reference-item {
+margin-bottom: 1 em;
+padding-left: 2 em;
+text-indent: -2 em;
+}
+/* Tables */
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 2 em 0;
+box-shadow: 0 2 px 8 px rgba(0, 0, 0, 0.1);
+border-radius: 8 px;
+overflow: hidden;
+}
+th, td {
+border: 1 px solid #bdc 3 c 7;
+padding: 12 px 15 px;
+text-align: left;
+vertical-align: top;
+}
+th {
+background-color: #34495 e;
+color: white;
+font-weight: bold;
+font-size: 0.95 em;
+}
+tr: nth-child(even) {
+background-color: #f 8 f 9 fa;
+}. Timeline-table {
+font-size: 0.9 em;
+}. Timeline-year {
+font-weight: bold;
+width: 80 px;
+background-color: #ecf 0 f 1;
+}
+/* Links */
+a {
+color: #2980 b 9;
+text-decoration: none;
+border-bottom: 1 px dotted #2980 b 9;
+}
+a: hover {
+color: #3498 db;
+border-bottom: 1 px solid #3498 db;
+}. Footnote-ref {
+vertical-align: super;
+font-size: 0.8 em;
+margin-left: 2 px;
+}
+/* Index and TOC styles */. Index-section {
+margin: 2 em 0;
+padding: 1.5 em;
+background-color: #f 8 f 9 fa;
+border-radius: 8 px;
+}. Index-columns {
+column-count: 2;
+column-gap: 2 em;
+}. Index-item {
+margin-bottom: 0.5 em;
+break-inside: avoid;
+}. Toc-container {
+margin: 2 em 0;
+padding: 1.5 em;
+background-color: #f 8 f 9 fa;
+border-radius: 8 px;
+}. Toc-level-1 {
+font-weight: bold;
+margin-top: 1 em;
+}. Toc-level-2 {
+margin-left: 1 em;
+}. Toc-level-3 {
+margin-left: 2 em;
+font-size: 0.9 em;
+}
+/* Glossary styles */. Glossary-term {
+font-weight: bold;
+color: #2 c 3 e 50;
+display: block;
+margin-top: 1.5 em;
+}. Glossary-definition {
+margin-left: 1 em;
+margin-bottom: 1.5 em;
+}
+/* Citation and reference styles */. Citation {
+font-style: italic;
+color: #7 f 8 c 8 d;
+margin: 1 em 0;
+padding-left: 1 em;
+border-left: 2 px solid #bdc 3 c 7;
+}. Works-cited {
+margin: 3 em 0;
+}. Works-cited h 2 {
+text-align: center;
+border-bottom: none;
+margin-bottom: 1.5 em;
+}
+/* Figures and images */
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 2 em auto;
+border-radius: 4 px;
+box-shadow: 0 4 px 8 px rgba(0, 0, 0, 0.1);
+}. Figure-caption {
+text-align: center;
+font-style: italic;
+color: #7 f 8 c 8 d;
+margin-top: -1.5 em;
+margin-bottom: 2 em;
+}
+/* Special content blocks */. Content-warning {
+background-color: #ffeaa 7;
+border: 2 px solid #fdcb 6 e;
+padding: 2 em;
+margin: 2 em 0;
+border-radius: 8 px;
+text-align: center;
+font-weight: bold;
+}. Author-note {
+background-color: #d 1 ecf 1;
+border: 1 px solid #bee 5 eb;
+padding: 1.5 em;
+margin: 2 em 0;
+border-radius: 8 px;
+font-style: italic;
+}
+/* Page breaks for printing */. Page-break {
+page-break-before: always;
+margin-top: 3 em;
+}
+/* Utility classes */. Text-center {
+text-align: center;
+}. Text-right {
+text-align: right;
+}. Text-italic {
+font-style: italic;
+}. Text-small {
+font-size: 0.9 em;
+}. Text-muted {
+color: #7 f 8 c 8 d;
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+body {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+color: #ecf 0 f 1;
+}
+blockquote,. Highlight,. Index-section,. Toc-container {
+background-color: #34495 e;
+color: #ecf 0 f 1;
+}
+code {
+background-color: #34495 e;
+color: #ecf 0 f 1;
+}
+th {
+background-color: #2 c 3 e 50;
+}
+tr: nth-child(even) {
+background-color: #34495 e;
+}. Content-warning {
+background-color: #4 a 3728;
+border-color: #8 b 4513;
+}. Author-note {
+background-color: #1 a 3 c 4 f;
+border-color: #2980 b 9;
+}
+}</style>
+<style type="text/css">body {
+font-family: 'Georgia', 'Times New Roman', serif;
+line-height: 1.6;
+margin: 0;
+padding: 20 px;
+color: #333;
+background-color: #f 9 f 9 f 9;
+max-width: 800 px;
+margin: 0 auto;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+font-family: 'Georgia', 'Times New Roman', serif;
+color: #2 c 3 e 50;
+margin-top: 1.5 em;
+margin-bottom: 0.5 em;
+}
+h 1 {
+font-size: 2.2 em;
+border-bottom: 2 px solid #3498 db;
+padding-bottom: 0.3 em;
+}
+h 2 {
+font-size: 1.8 em;
+border-bottom: 1 px solid #bdc 3 c 7;
+padding-bottom: 0.2 em;
+}
+p {
+margin-bottom: 1 em;
+text-align: justify;
+}
+blockquote {
+border-left: 4 px solid #3498 db;
+margin: 1 em 0;
+padding-left: 1 em;
+font-style: italic;
+background-color: #f 8 f 9 fa;
+padding: 1 em;
+}
+code {
+background-color: #ecf 0 f 1;
+padding: 2 px 4 px;
+border-radius: 3 px;
+font-family: 'Courier New', monospace;
+}
+pre {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+padding: 1 em;
+border-radius: 5 px;
+overflow-x: auto;
+font-family: 'Courier New', monospace;
+}
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 1 em 0;
+}
+th, td {
+border: 1 px solid #bdc 3 c 7;
+padding: 8 px 12 px;
+text-align: left;
+}
+th {
+background-color: #34495 e;
+color: white;
+}
+tr: nth-child(even) {
+background-color: #f 2 f 2 f 2;
+}
+a {
+color: #2980 b 9;
+text-decoration: none;
+}
+a: hover {
+text-decoration: underline;
+}
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 1 em auto;
+}. Footnote {
+font-size: 0.9 em;
+color: #7 f 8 c 8 d;
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+body {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+color: #ecf 0 f 1;
+}
+blockquote {
+background-color: #34495 e;
+}
+code {
+background-color: #34495 e;
+}
+tr: nth-child(even) {
+background-color: #34495 e;
+}
+}</style>
+<style><style>. Racial-disparities-container {
+margin-bottom: 40 px;
+page-break-inside: avoid;
+}. Racial-disparities-table {
+width: 100%;
+border-collapse: collapse;
+margin: 20 px 0;
+box-shadow: 0 10 px rgba(0, 0, 0, 0.05);
+font-family: Arial, sans-serif;
+}. Racial-disparities-table th,. Racial-disparities-table td {
+border: 1 px solid #ddd;
+padding: 12 px 15 px;
+text-align: left;
+}. Racial-disparities-table th {
+background-color: #3498 db;
+color: white;
+font-weight: bold;
+}. Racial-disparities-table tr: nth-child(even) {
+background-color: #f 8 f 9 fa;
+}. Racial-disparities-table tr: hover {
+background-color: #f 1 f 8 ff;
+}
+/* Tier-based styling */. Tier-1 {
+background-color: #e 8 f 5 e 8! Important; /* Light green for high confidence */
+}. Tier-2 {
+background-color: #fff 9 e 6! Important; /* Light yellow for medium confidence */
+}. Tier-3 {
+background-color: #ffe 6 e 6! Important; /* Light red for needs verification */
+}. Tier-badge {
+display: inline-block;
+padding: 2 px 6 px;
+border-radius: 3 px;
+font-size: 0.8 em;
+font-weight: bold;
+margin-left: 5 px;
+}. Tier-1. Tier-badge {
+background-color: #27 ae 60;
+color: white;
+}. Tier-2. Tier-badge {
+background-color: #f 39 c 12;
+color: white;
+}. Tier-3. Tier-badge {
+background-color: #e 74 c 3 c;
+color: white;
+}. Disparity-high {
+font-weight: bold;
+color: #c 0392 b;
+}. Verification-needed {
+color: #e 74 c 3 c;
+font-style: italic;
+}. Tier-key {
+background: #f 8 f 9 fa;
+padding: 10 px;
+border-radius: 5 px;
+margin: 10 px 0;
+border-left: 4 px solid #3498 db;
+}
+@media print {. Racial-disparities-table {
+box-shadow: none;
+}. Racial-disparities-container {
+page-break-inside: avoid;
+}
+}</style>
+</head><body><div class="works-cited">This category includes peer-reviewed scholarship, books published by university presses, and rigorous empirical studies that provide analytical framework and historical context.
+African American Policy Forum. 2022. The Dissident's Dilemma: Surveillance and Self-Censorship in Black Activist Communities. New York: AAPF.
+Algorithmic Justice League. 2023. The Cost of Automated Discrimination: Economic Impact of Algorithmic Bias in Housing and Employment. Cambridge: AJL.
+American Psychological Association. 2023."Ambient Authoritarianism: The Mental Health Impact of Automated Surveillance in Black Communities." Journal of Abnormal Psychology 132(4): 455-472.
+Ang, Desmond. 2021."The Effects of Police Violence on Inner-City Students." Quarterly Journal of Economics 136 (1): 115-168.
+Bannon, Alicia, et al."Criminal Justice Debt: A Barrier to Reentry." Brennan Center for Justice, 2010.
+Baylor University Social Justice Project. 2023. Digital Fear: The Impact of Social Media Monitoring on Political Participation. Waco: Baylor University Press.
+Benjamin, Ruha. 2019. Race After Technology: Abolitionist Tools for the New Jim Code. Cambridge: Polity Press.
+Billingsley, Andrew. Climbing Jacob's Ladder: The Enduring Legacy of African-American Families. Simon &amp; Schuster, 1992.
+Bloom, Joshua, and Waldo E. Martin, Jr. Black Against Empire: The History and Politics of the Black Panther Party. University of California Press, 2013.
+Branch, Taylor. Parting the Waters: America in the King Years, 1954-63. Simon &amp; Schuster, 1988.
+Brayne, Sarah. Predict and Surveil: Data, Discretion, and the Future of Policing. Oxford University Press, 2020.
+Brennan Center for Justice. 2023. The Surveillance-Industrial Complex: Funding and Lobbying in the Automated Policing Era. New York: NYU School of Law.
+Brookings Institution. 2023. The Economics of Surveillance: Revenue Models and Financial Incentives in the Carceral-Tech Industry. Washington, DC: Brookings.
+Browne, Simone. 2015. Dark Matters: On the Surveillance of Blackness. Durham: Duke University Press.
+Burns, Sarah. The Central Park Five: A Chronicle of a City Wilding. Knopf, 2011.
+Carter, Dan T. Scottsboro: A Tragedy of the American South. Louisiana State University Press, 1969.
+Center for American Progress. 2023. Legislative Failure: The Algorithmic Accountability Act and Corporate Lobbying. Washington, DC: CAP.
+Center for Popular Democracy. 2023. Defunding Surveillance: Municipal Budget Reallocation for Community Safety. New York: CPD.
+Churchill, Ward, and Jim Vander Wall. The COINTELPRO Papers: Documents from the FBI's Secret Wars Against Domestic Dissent. South End Press, 1990.
+Citron, Danielle Keats, and Frank Pasquale. 2014."The Scored Society: Due Process for Automated Predictions." Washington Law Review 89: 1-33.
+Colgan, Beth A."The Excessive Fines Clause: Challenging the Modern Debtors' Prison." UCLA Law Review, vol. 65, no. 2, 2021, pp. 234-305.
+Community Control Over Police Surveillance. 2023. CCOPS Impact Report: Municipal Surveillance Regulation 2019-2023. National Network.
+Community Digital Defense Project. 2023. Digital Self-Defense: Encryption and Counter-Surveillance Education in Black Communities. Oakland: CDDP.
+Community Mental Health Transformation Project. 2023. Healing While Resisting: Liberation Psychology Frameworks for Surveilled Communities. Chicago: CMHTP.
+Darity, William A., Jr., and A. Kirsten Mullen. From Here to Equality: Reparations for Black Americans in the Twenty-First Century. University of North Carolina Press, 2020.
+Data for Black Lives. 2023. Abolitionist AI: Community Safety Index and Alternative Algorithmic Systems. Boston: D 4 BL.
+DeGruy, Joy. Post Traumatic Slave Syndrome: America's Legacy of Enduring Injury and Healing. Uptone Press, 2005.
+Desmond, Matthew. Evicted: Poverty and Profit in the American City. Crown Publishers, 2016.
+Digital Defense Fund. 2023. Agency Restoration: Psychological Impacts of Digital Empowerment Programs. Brooklyn: DDF.
+Durham Beyond Policing. 2023. Community Safety Without Surveillance: The Durham Model. Durham: DBP.
+Edin, Kathryn J., and H. Luke Shaefer. $2.00 a Day: Living on Almost Nothing in America. Houghton Mifflin Harcourt, 2015.
+Electronic Frontier Foundation. 2023. Amazon's Ring Network: Corporate-Run Surveillance and Police Partnerships. San Francisco: EFF.
+Electronic Privacy Information Center. 2024. Surveillance Technology Bans and Regulations: Municipal Policy Trends 2019-2024. Washington, DC: EPIC.
+Eubanks, Virginia. Automating Inequality: How High-Tech Tools Profile, Police, and Punish the Poor. St. Martin's Press, 2018.
+Fagan, Jeffrey, et al."Street Stops and Broken Windows Revisited: The Demography and Logic of Proactive Policing in a Safe and Changing City." Race and Justice, vol. 6, no. 1, 2016, pp. 35-76.
+Freire, Paulo. Pedagogy of the Oppressed. Herder and Herder, 1970.
+Garrett, T. The Psychology of Radical Healing: From Individual Coping to Collective Liberation. New York: Routledge, 2023.
+Garvie, Clare, Alvaro Bedoya, and Jonathan Frankle."The Perpetual Line-Up: Unregulated Police Face Recognition in America." Georgetown Law Center on Privacy &amp; Technology, 18 Oct. 2016.
+Gates, Henry Louis, Jr."The Truth Behind 'Black Wall Street'." PBS, 4 June 2019,.
+Geller, Amanda, and Marnie A. Curtis."A Sort of Homecoming: Incarceration and the Housing Security of Urban Men." Social Science Research, vol. 40, no. 4, 2011, pp. 1196-1213.
+Georgetown Law Center on Privacy &amp; Technology. 2024. The Perpetual Line-Up Revisited: Facial Recognition Expansion 2017-2024. Washington, DC: Georgetown Law.
+German, Mike. 2020."The FBI's 'Black Identity Extremist' Designation Is Even Worse Than It Sounds." Just Security, October 20.
+German, Mike. 2021. Counterterrorism Infrastructure and Domestic Surveillance: The Bureaucratic Evolution. Washington, DC: Brennan Center for Justice.
+Ginwright, Shawn. Black Youth Rising: Activism and Radical Healing in Urban America. Teachers College Press, 2010.
+Harris, Alexes. A Pound of Flesh: Monetary Sanctions as Punishment for the Poor. Russell Sage Foundation, 2016.
+hooks, bell. All About Love: New Visions. William Morrow, 2000.
+International Journal of Drug Policy. 2023."Sanctuary Spaces: Harm Reduction and Surveillance Avoidance in the Automated Era." 45(3): 112-134.
+Jackson, Sarah J., and Brooke Foucault Welles. 2016."#Ferguson Is Everywhere: Initiators in Emerging Counterpublic Networks." Information, Communication &amp; Society 19 (3): 397-418.
+Jackson, Thomas F. From Civil Rights to Human Rights: Martin Luther King, Jr., and the Struggle for Economic Justice. University of Pennsylvania Press, 2007.
+Journal of the American Medical Association. 2023."Population-Level Cortisol Elevation in Surveilled Communities: Biochemical Evidence of Chronic Stress." 329(8): 645-658.
+Journal of Urban Health. 2022."Sleep Disruption and Hypervigilance in Digitally Monitored Neighborhoods." 99(4): 567-589.
+Lum, Kristian, and William Isaac. 2016."To Predict and Serve?" Significance 13(5): 14-19.
+Mills, Kay. This Little Light of Mine: The Life of Fannie Lou Hamer. University Press of Kentucky, 2007.
+Movement for Black Lives. 2023. Digital Fear and Organizational Membership: Survey of Black Community Organizations. National Survey.
+National Bureau of Economic Research. 2023. The Racial Wealth Transfer: Historical Consistency in Extraction Economies. Cambridge: NBER.
+Netherland, Julie, and Helena Hansen."The War on Drugs That Wasn't: Wasted Whiteness, 'Dirty Doctors, 'and Race in the Opioid Epidemic." International Journal of Drug Policy, vol. 30, 2016, pp. 83-88.
+Newark Privacy Commission. 2022. Automated License Plate Reader Deployment and Data Retention Patterns. Newark: Municipal Report.
+Pager, Devah. Marked: Race, Crime, and Finding Work in an Era of Mass Incarceration. University of Chicago Press, 2007.
+Police Executive Research Forum. 2024. Real-Time Crime Centers: National Survey of Implementation and Operations. Washington, DC: PERF.
+Pretrial Justice Institute. 2022. Algorithmic Bias in Bail Decisions: Racial Disparities in Pretrial Detention. Washington, DC: PJI.
+Ransby, Barbara. 2018. Making All Black Lives Matter: Reimagining Freedom in the Twenty-First Century. University of California Press.
+Ricks, Imani."The Black Church and the Underground Railroad: A History of Resistance." The Conversation, 17 Feb. 2021.
+Sampson, Robert J. Great American City: Chicago and the Enduring Neighborhood Effect. University of Chicago Press, 2012.
+Schnepel, Kevin T."Good Jobs and Recidivism." The Economic Journal, vol. 128, no. 608, 2018, pp. 447-69.
+Spade, Dean. Mutual Aid: Building Solidarity During This Crisis (and the Next). Verso, 2020.
+Substance Abuse and Mental Health Services Administration. 2023. Surveillance-Informed Treatment: Integrated Approaches to Substance Use in Monitored Communities. Rockville: SAMHSA.
+Tech Inquiry. 2022. Palantir's Police Partnerships: Data Acquisition and Platform Adoption Metrics. New York: TI.
+The Markup. 2022."From Surveillance to Screening: How Police Data Fuels Housing Discrimination." November 15.
+Transnational Anti-Surveillance Network. 2023. Global Resistance Strategies: Knowledge Sharing Across Borders. Berlin: TASN.
+Turney, Kristin, and Christopher Wildeman."Redefining Relationships: Explaining the Countervailing Consequences of Paternal Incarceration for Parenting." American Sociological Review, vol. 78, no. 6, 2013, pp. 949-79.
+Tushnet, Mark V. Making Civil Rights Law: Thurgood Marshall and the Supreme Court, 1936-1961. Oxford University Press, 1994.
+United Nations Human Rights Council. 2023. Racial Discrimination in the Digital Age: Report of the Special Rapporteur on Contemporary Forms of Racism. Geneva: UN.
+University of Chicago Crime Lab. 2022. Predictive Policing Feedback Loops: Arrest Patterns Without Crime Increases. Chicago: UChicago.
+U. S. Sentencing Commission. 2023. The Amplification Effect: Racial Disparities in Algorithmic Sentencing Recommendations. Washington, DC: USSC.
+Wagner, Peter, and Wendy Sawyer. 2018."State of Incarceration: The Global Context 2018." Prison Policy Initiative. 2018.
+Washburn, Patrick S. The African American Newspaper: Voice of Freedom. Northwestern University Press, 2006.
+Zuboff, Shoshana. 2019. The Age of Surveillance Capitalism: The Fight for a Human Future at the New Frontier of Power. New York: PublicAffairs.</div></body></html>

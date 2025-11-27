@@ -1,0 +1,588 @@
+<html><head><meta charset="utf-8"/><style id="infinity-loop-standard-css">/* Infinity Loop – standard academic formatting */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Garamond","Georgia","Times New Roman",serif;
+  font-size: 12pt;
+  line-height: 1.5;
+  color: #222222;
+  background-color: #ffffff;
+}
+
+/* Word-export paragraphs */
+p, p.MsoNormal {
+  margin-top: 0;
+  margin-bottom: 0.85em;
+  text-align: justify;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Garamond","Georgia","Times New Roman",serif;
+  font-weight: bold;
+  margin-top: 1.25em;
+  margin-bottom: 0.6em;
+  line-height: 1.25;
+}
+
+/* Optional: chapter title style if using a dedicated class */
+h1.chapter-title {
+  font-size: 20pt;
+  text-align: center;
+  text-transform: none;
+}
+
+/* Lists */
+ul, ol {
+  margin-top: 0.3em;
+  margin-bottom: 0.85em;
+  padding-left: 1.5em;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.25em 0;
+}
+
+table td, table th {
+  border: 1px solid #444444;
+  padding: 4px 6px;
+  vertical-align: top;
+}
+
+/* Make table headings a bit bolder */
+table th {
+  font-weight: 600;
+}
+
+/* Footnotes / smaller text */
+.small, .footnote, .endnote {
+  font-size: 10pt;
+  line-height: 1.4;
+}
+
+/* Links */
+a {
+  color: #1d4ed8;
+}
+
+/* Page-like max width for better standalone reading */
+body > div, body > p, body > table {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<!--Injected by ebook formatter-->
+<style type="text/css">/* Base typography */
+body {
+font-family: 'Georgia', 'Times New Roman', serif;
+line-height: 1.7;
+margin: 0;
+padding: 2 em;
+color: #2 c 3 e 50;
+background-color: #fefefe;
+max-width: 800 px;
+margin: 0 auto;
+text-align: justify;
+font-size: 17 px;
+}
+/* Headings */
+h 1 {
+font-size: 2.4 em;
+color: #2 c 3 e 50;
+border-bottom: 3 px solid #3498 db;
+padding-bottom: 0.3 em;
+margin: 1.5 em 0.8 em 0;
+text-align: center;
+font-weight: normal;
+letter-spacing: -0.5 px;
+}
+h 2 {
+font-size: 1.9 em;
+color: #34495 e;
+border-bottom: 2 px solid #bdc 3 c 7;
+padding-bottom: 0.2 em;
+margin: 1.8 em 0.8 em 0;
+font-weight: normal;
+}
+h 3 {
+font-size: 1.5 em;
+color: #34495 e;
+margin: 1.5 em 0.5 em 0;
+font-weight: normal;
+}
+h 4, h 5, h 6 {
+font-size: 1.2 em;
+color: #34495 e;
+margin: 1.2 em 0.5 em 0;
+}
+/* Paragraphs and text */
+p {
+margin-bottom: 1.2 em;
+text-align: justify;
+hyphens: auto;
+-webkit-hyphens: auto;
+-ms-hyphens: auto;
+}. Chapter-intro {
+font-style: italic;
+color: #7 f 8 c 8 d;
+border-left: 4 px solid #3498 db;
+padding-left: 1.5 em;
+margin: 2 em 0;
+font-size: 1.1 em;
+}
+/* Blockquotes and highlights */
+blockquote {
+border-left: 4 px solid #3498 db;
+margin: 2 em 0;
+padding: 1.5 em 2 em;
+background-color: #f 8 f 9 fa;
+font-style: italic;
+color: #555;
+}. Highlight {
+background-color: #fff 3 cd;
+padding: 1 em;
+border-left: 4 px solid #ffc 107;
+margin: 1.5 em 0;
+}
+/* Code and preformatted text */
+code {
+background-color: #ecf 0 f 1;
+padding: 0.2 em 0.4 em;
+border-radius: 3 px;
+font-family: 'Courier New', monospace;
+font-size: 0.9 em;
+color: #c 7254 e;
+}
+pre {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+padding: 1.5 em;
+border-radius: 5 px;
+overflow-x: auto;
+font-family: 'Courier New', monospace;
+line-height: 1.4;
+margin: 1.5 em 0;
+border-left: 4 px solid #3498 db;
+}
+/* Lists */
+ul, ol {
+margin: 1.5 em 0;
+padding-left: 2 em;
+}
+li {
+margin-bottom: 0.5 em;
+text-align: left;
+}. Reference-list {
+margin: 2 em 0;
+padding-left: 0;
+}. Reference-item {
+margin-bottom: 1 em;
+padding-left: 2 em;
+text-indent: -2 em;
+}
+/* Tables */
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 2 em 0;
+box-shadow: 0 2 px 8 px rgba(0, 0, 0, 0.1);
+border-radius: 8 px;
+overflow: hidden;
+}
+th, td {
+border: 1 px solid #bdc 3 c 7;
+padding: 12 px 15 px;
+text-align: left;
+vertical-align: top;
+}
+th {
+background-color: #34495 e;
+color: white;
+font-weight: bold;
+font-size: 0.95 em;
+}
+tr: nth-child(even) {
+background-color: #f 8 f 9 fa;
+}. Timeline-table {
+font-size: 0.9 em;
+}. Timeline-year {
+font-weight: bold;
+width: 80 px;
+background-color: #ecf 0 f 1;
+}
+/* Links */
+a {
+color: #2980 b 9;
+text-decoration: none;
+border-bottom: 1 px dotted #2980 b 9;
+}
+a: hover {
+color: #3498 db;
+border-bottom: 1 px solid #3498 db;
+}. Footnote-ref {
+vertical-align: super;
+font-size: 0.8 em;
+margin-left: 2 px;
+}
+/* Index and TOC styles */. Index-section {
+margin: 2 em 0;
+padding: 1.5 em;
+background-color: #f 8 f 9 fa;
+border-radius: 8 px;
+}. Index-columns {
+column-count: 2;
+column-gap: 2 em;
+}. Index-item {
+margin-bottom: 0.5 em;
+break-inside: avoid;
+}. Toc-container {
+margin: 2 em 0;
+padding: 1.5 em;
+background-color: #f 8 f 9 fa;
+border-radius: 8 px;
+}. Toc-level-1 {
+font-weight: bold;
+margin-top: 1 em;
+}. Toc-level-2 {
+margin-left: 1 em;
+}. Toc-level-3 {
+margin-left: 2 em;
+font-size: 0.9 em;
+}
+/* Glossary styles */. Glossary-term {
+font-weight: bold;
+color: #2 c 3 e 50;
+display: block;
+margin-top: 1.5 em;
+}. Glossary-definition {
+margin-left: 1 em;
+margin-bottom: 1.5 em;
+}
+/* Citation and reference styles */. Citation {
+font-style: italic;
+color: #7 f 8 c 8 d;
+margin: 1 em 0;
+padding-left: 1 em;
+border-left: 2 px solid #bdc 3 c 7;
+}. Works-cited {
+margin: 3 em 0;
+}. Works-cited h 2 {
+text-align: center;
+border-bottom: none;
+margin-bottom: 1.5 em;
+}
+/* Figures and images */
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 2 em auto;
+border-radius: 4 px;
+box-shadow: 0 4 px 8 px rgba(0, 0, 0, 0.1);
+}. Figure-caption {
+text-align: center;
+font-style: italic;
+color: #7 f 8 c 8 d;
+margin-top: -1.5 em;
+margin-bottom: 2 em;
+}
+/* Special content blocks */. Content-warning {
+background-color: #ffeaa 7;
+border: 2 px solid #fdcb 6 e;
+padding: 2 em;
+margin: 2 em 0;
+border-radius: 8 px;
+text-align: center;
+font-weight: bold;
+}. Author-note {
+background-color: #d 1 ecf 1;
+border: 1 px solid #bee 5 eb;
+padding: 1.5 em;
+margin: 2 em 0;
+border-radius: 8 px;
+font-style: italic;
+}
+/* Page breaks for printing */. Page-break {
+page-break-before: always;
+margin-top: 3 em;
+}
+/* Utility classes */. Text-center {
+text-align: center;
+}. Text-right {
+text-align: right;
+}. Text-italic {
+font-style: italic;
+}. Text-small {
+font-size: 0.9 em;
+}. Text-muted {
+color: #7 f 8 c 8 d;
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+body {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+color: #ecf 0 f 1;
+}
+blockquote,. Highlight,. Index-section,. Toc-container {
+background-color: #34495 e;
+color: #ecf 0 f 1;
+}
+code {
+background-color: #34495 e;
+color: #ecf 0 f 1;
+}
+th {
+background-color: #2 c 3 e 50;
+}
+tr: nth-child(even) {
+background-color: #34495 e;
+}. Content-warning {
+background-color: #4 a 3728;
+border-color: #8 b 4513;
+}. Author-note {
+background-color: #1 a 3 c 4 f;
+border-color: #2980 b 9;
+}
+}</style>
+<style type="text/css">body {
+font-family: 'Georgia', 'Times New Roman', serif;
+line-height: 1.6;
+margin: 0;
+padding: 20 px;
+color: #333;
+background-color: #f 9 f 9 f 9;
+max-width: 800 px;
+margin: 0 auto;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+font-family: 'Georgia', 'Times New Roman', serif;
+color: #2 c 3 e 50;
+margin-top: 1.5 em;
+margin-bottom: 0.5 em;
+}
+h 1 {
+font-size: 2.2 em;
+border-bottom: 2 px solid #3498 db;
+padding-bottom: 0.3 em;
+}
+h 2 {
+font-size: 1.8 em;
+border-bottom: 1 px solid #bdc 3 c 7;
+padding-bottom: 0.2 em;
+}
+p {
+margin-bottom: 1 em;
+text-align: justify;
+}
+blockquote {
+border-left: 4 px solid #3498 db;
+margin: 1 em 0;
+padding-left: 1 em;
+font-style: italic;
+background-color: #f 8 f 9 fa;
+padding: 1 em;
+}
+code {
+background-color: #ecf 0 f 1;
+padding: 2 px 4 px;
+border-radius: 3 px;
+font-family: 'Courier New', monospace;
+}
+pre {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+padding: 1 em;
+border-radius: 5 px;
+overflow-x: auto;
+font-family: 'Courier New', monospace;
+}
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 1 em 0;
+}
+th, td {
+border: 1 px solid #bdc 3 c 7;
+padding: 8 px 12 px;
+text-align: left;
+}
+th {
+background-color: #34495 e;
+color: white;
+}
+tr: nth-child(even) {
+background-color: #f 2 f 2 f 2;
+}
+a {
+color: #2980 b 9;
+text-decoration: none;
+}
+a: hover {
+text-decoration: underline;
+}
+img {
+max-width: 100%;
+height: auto;
+display: block;
+margin: 1 em auto;
+}. Footnote {
+font-size: 0.9 em;
+color: #7 f 8 c 8 d;
+}
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+body {
+background-color: #2 c 3 e 50;
+color: #ecf 0 f 1;
+}
+h 1, h 2, h 3, h 4, h 5, h 6 {
+color: #ecf 0 f 1;
+}
+blockquote {
+background-color: #34495 e;
+}
+code {
+background-color: #34495 e;
+}
+tr: nth-child(even) {
+background-color: #34495 e;
+}
+}</style>
+<style><style>. Racial-disparities-container {
+margin-bottom: 40 px;
+page-break-inside: avoid;
+}. Racial-disparities-table {
+width: 100%;
+border-collapse: collapse;
+margin: 20 px 0;
+box-shadow: 0 10 px rgba(0, 0, 0, 0.05);
+font-family: Arial, sans-serif;
+}. Racial-disparities-table th,. Racial-disparities-table td {
+border: 1 px solid #ddd;
+padding: 12 px 15 px;
+text-align: left;
+}. Racial-disparities-table th {
+background-color: #3498 db;
+color: white;
+font-weight: bold;
+}. Racial-disparities-table tr: nth-child(even) {
+background-color: #f 8 f 9 fa;
+}. Racial-disparities-table tr: hover {
+background-color: #f 1 f 8 ff;
+}
+/* Tier-based styling */. Tier-1 {
+background-color: #e 8 f 5 e 8! Important; /* Light green for high confidence */
+}. Tier-2 {
+background-color: #fff 9 e 6! Important; /* Light yellow for medium confidence */
+}. Tier-3 {
+background-color: #ffe 6 e 6! Important; /* Light red for needs verification */
+}. Tier-badge {
+display: inline-block;
+padding: 2 px 6 px;
+border-radius: 3 px;
+font-size: 0.8 em;
+font-weight: bold;
+margin-left: 5 px;
+}. Tier-1. Tier-badge {
+background-color: #27 ae 60;
+color: white;
+}. Tier-2. Tier-badge {
+background-color: #f 39 c 12;
+color: white;
+}. Tier-3. Tier-badge {
+background-color: #e 74 c 3 c;
+color: white;
+}. Disparity-high {
+font-weight: bold;
+color: #c 0392 b;
+}. Verification-needed {
+color: #e 74 c 3 c;
+font-style: italic;
+}. Tier-key {
+background: #f 8 f 9 fa;
+padding: 10 px;
+border-radius: 5 px;
+margin: 10 px 0;
+border-left: 4 px solid #3498 db;
+}
+@media print {. Racial-disparities-table {
+box-shadow: none;
+}. Racial-disparities-container {
+page-break-inside: avoid;
+}
+}</style>
+</head><body><div class="works-cited">This category includes government documents, statutes, court cases, official reports, and other primary legal and administrative sources. These represent the Loop's own documentary record.
+Alang, Sirry, Donna Marie, McCreedy Ellen, and Hardeman Rachel. 2017."Police Brutality and Black Health: Setting the Agenda for Public Health Scholars." American Journal of Public Health 107 (5): 662-665.
+Al Jazeera America. 2015."Glenn Ford, Who Spent 30 Years on Louisiana's Death Row for a Crime He Didn't Commit, Dies." June 29, 2015.
+American Association of Motor Vehicle Administrators."Best Practices Guide for Driver License Suspension, Reinstatement, and Related Programs." 2019.
+American Civil Liberties Union. 2020."ACLU Sues Detroit Police for Wrongful Arrest Based on Faulty Facial Recognition." June 29.
+American Civil Liberties Union of California. 2016."Police Use of Social Media Surveillance Software Is Escalating, and Activists Are in the Digital Crosshairs." October 11, 2016.
+American Colonization Society."Constitution of the American Society for Colonizing the Free People of Colour of the United States." 1816.
+Anderson, Claude. PowerNomics: The National Plan to Empower Black America. PowerNomics Corporation of America, 2001.
+Angwin, Julia, Jeff Larson, Surya Mattu, and Lauren Kirchner. 2016."Machine Bias: There's Software Used Across the Country to Predict Future Criminals. And It's Biased Against Blacks." ProPublica, May 23.
+Bor, Jacob, Atheendar S. Venkataramani, David R. Williams, and Alexander C. Tsai. 2018."Police Killings and Their Spillover Effects on the Mental Health of Black Americans: A Population-Based, Quasi-Experimental Study." The Lancet 392 (10144): 302-310.
+Brennan Center for Justice."The Steep Costs of Criminal Justice Fees." 2022.
+Buolamwini, Joy, and Timnit Gebru. 2018."Gender Shades: Intersectional Accuracy Disparities in Commercial Gender Classification." Proceedings of Machine Learning Research 81: 1-15.
+Centers for Disease Control and Prevention. 2016."CDC Wonder: Underlying Cause of Death Database." Accessed 1999-2016.
+Centers for Disease Control and Prevention. 2023. Behavioral Risk Factor Surveillance System Analysis: Substance Use Patterns in Surveilled Communities. Atlanta: CDC.
+Chicago Commission on Race Relations. 1922. The Negro in Chicago: A Study of Race Relations and a Race Riot. Chicago: University of Chicago Press.
+City of Detroit, Office of the Chief of Police. 2019."Project Green Light Detroit: 2019 Annual Report." City of Los Angeles. Los Angeles Municipal Code ยง 41.18(e). 2021.
+Civil Courts, City of St. Louis. Eviction Court Dockets. 2021.
+Code of Federal Regulations. Title 28, Sections 2.40, 2.52. U. S. Government Publishing Office, 2023.
+Davis, Angela Y. Angela Davis: An Autobiography. Random House, 1974.
+Detroit Police Department. 2019. Facial Recognition Policy and Training Manual. Internal Document."Economic Justice." Movement for Black Lives, 2020, m 4 bl. Org/policy-platforms/economic-justice/.
+Electronic Frontier Foundation."At a Glance: Automated License Plate Readers (ALPRs)." 2021.
+Electronic Frontier Foundation."Surveillance Self-Defense: Tips, Tools and How-tos for Safer Online Communications." 2023, ssd. Eff. Org/.
+Federal Bureau of Investigation. 2010-2016. Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race.
+Federal Bureau of Investigation."Uniform Crime Reporting (UCR) Program." Data accessed 2010-2020.
+Federal Bureau of Investigation. 2024. BIE Assessment Data 2017-2023. Obtained via FOIA by Property of the People.
+Federal Bureau of Investigation, Counterterrorism Division. 2017."Black Identity Extremists Likely Motivated to Target Law Enforcement Officers." Intelligence Assessment, August 3.
+Federal Bureau of Investigation, Counterterrorism Division. 2018."Black Identity Extremism Indicators and Assessment Criteria." Training Document.
+FBI Houston Field Office. 2017."Counterterrorism Division Bulletin: Black Identity Extremism Indicators." Obtained via FOIA by Property of the People.
+Ginzburg, Ralph. 100 Years of Lynchings. New York: Lancer Books, 1962. Reprint, Baltimore: Black Classic Press, 1962.
+Gonnerman, Jennifer. 2014."Before the Law." The New Yorker, October 6, 2014.
+Google. 2024. Transparency Report: Geofence Warrant Requests 2019-2023. Mountain View: Google LLC.
+Harwell, Drew. 2016."Fresno Police Use Software that Scans Social Media to Help Assess 'Threat Level' of Citizens." The Washington Post, April 15, 2016.
+Hill, Kashmir. 2020."The Secretive Company That Might End Privacy as We Know It." The New York Times, January 18, 2020.
+Hill, Kashmir. 2020."Wrongfully Accused by an Algorithm." The New York Times, June 24.
+Human Rights Watch." Profiting from Probation: America's 'Offender-Funded' Probation Industry." 2014.
+Innocence Project."Nijeer Parks: Wrongfully Accused by Facial Recognition Technology." 2020.
+Institute for Justice."Policing for Profit: The Abuse of Civil Asset Forfeiture." 2020.
+Joh, Elizabeth E. 2014."Policing by Numbers: Big Data and the Fourth Amendment." Washington Law Review 89 (1): 35-68.
+King, Martin Luther, Jr. Why We Can't Wait. Harper &amp; Row, 1964.
+Levin, Sam. 2017."FBI Terrorism Unit Says 'Black Identity Extremists' Pose a Violent Threat." The Guardian, October 6, 2017.
+Los Angeles Police Department. 2021. Internal Audit of Predictive Policing Deployment Patterns. Office of the Inspector General.
+Madison, James. 1833. Certificate and Reflection on the American Colonization Society. James Madison Papers, Library of Congress.
+McFarland, Michael J., Cheryl A. Smith, John J. Taylor, and Mark D. Hayward. 2018."Perceived Unfair Treatment by Police, Race, and Telomere Length: A Nashville Community-based Sample of Black and White Men." Journal of Health and Social Behavior 59 (4): 585-600.
+Minneapolis Police Department. 2021. Social Media Monitoring During 2020 Protests. Documents obtained via FOIA.
+Mississippi Legislature."Mississippi Vagrancy Law." 1865.
+Muhammad, Elijah. Message to the Blackman in America. Muhammad Mosque of Islam No. 2, 1965.
+National Advisory Commission on Civil Disorders. Report of the National Advisory Commission on Civil Disorders. U. S. Government Printing Office, 1968.
+National Homelessness Law Center."Housing Not Handcuffs 2022: Ending the Criminalization of Homelessness in U. S. Cities." 2022.
+New York Civil Liberties Union. 2010."Stop-and-Frisk Data: 2003-2009." 2010.
+Robertson, Campbell. 2015."30 Years on Death Row, Exonerated, Then Felled by Cancer." The New York Times, June 30, 2015.
+Sewell, Abigail A., Kevin A. Jefferson, and Hedwig Lee. 2021."Illness Spillovers of Lethal Police Violence: The Significance of Gendered Marginalization." Ethnic and Racial Studies 44 (7): 1-24.
+Southall, Ashley. 2016."How a Hashtag Defined a Movement: #OperationCrewCut." The New York Times, August 15, 2016.
+Stanley, Jay. 2013."Police Body-Mounted Cameras: With Right Policies in Place, a Win For All." American Civil Liberties Union. October 9, 2013.
+State of Louisiana v. Glenn Ford. No. 156, 367. La. Sup. Ct. 2014. (Order Vacating Conviction and Sentence).
+Stop LAPD Spying Coalition."About Us." 2023, stoplapdspying. Org/about-us/.
+Stoughton, Seth W. 2015."Law Enforcement's 'Warrior' Problem." Harvard Law Review Forum 128: 225-234.
+The Promise of Justice Initiative. 2015."The Case of Glenn Ford." 2015.
+U. S. Department of Justice, Civil Rights Division. 2015."Investigation of the Ferguson Police Department." March 4, 2015.
+U. S. Department of Justice, Civil Rights Division. 2016."Investigation of the Baltimore City Police Department." August 10, 2016.
+U. S. Government Publishing Office."Electronic Code of Federal Regulations (e-CFR)." 2023,.
+Williams, Timothy. 2016."Police Body Cameras: What Do You See?" The New York Times, April 9, 2016.
+Williams v. City of Detroit, No. 20-014789 (Mich. Cir. Ct. 2020).
+Williams v. Clearview AI, 2021.
+Worth Rises."The Prison Labor Primer: Captive Labor in the U. S." 2021.</div></body></html>

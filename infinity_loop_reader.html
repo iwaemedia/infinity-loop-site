@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infinity Loop – Interactive Reader</title>
+  <style>
+    :root {
+      --shell-radius: 24px;
+      --shadow-soft: 0 24px 70px rgba(15, 23, 42, 0.45);
+      --transition-fast: 150ms ease-out;
+      --transition-med: 220ms ease-out;
+      --sidebar-width: 280px;
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-serif: "Georgia", "Times New Roman", serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      background: var(--bg-body);
+      color: var(--text-color);
+    }
+
+    body.light-mode {
+      --bg-body: #f3f4f6;
+      --bg-shell: #ffffff;
+      --bg-sidebar: #f9fafb;
+      --bg-sidebar-hover: #e5e7eb;
+      --bg-sidebar-active: #111827;
+      --bg-content: #ffffff;
+      --bg-chip: #f3f4ff;
+      --chip-text: #1f2937;
+      --text-color: #111827;
+      --muted-text: #6b7280;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --border-subtle: #e5e7eb;
+      --border-strong: #d1d5db;
+      --progress-track: #e5e7eb;
+      --progress-fill: linear-gradient(90deg, #2563eb, #4f46e5);
+    }
+
+    body.dark-mode {
+      --bg-body: #020617;
+      --bg-shell: #020617;
+      --bg-sidebar: #020617;
+      --bg-sidebar-hover: #111827;
+      --bg-sidebar-active: #111827;
+      --bg-content: #020617;
+      --bg-chip: rgba(15, 23, 42, 0.9);
+      --chip-text: #e5e7eb;
+      --text-color: #e5e7eb;
+      --muted-text: #9ca3af;
+      --accent: #60a5fa;
+      --accent-soft: rgba(56, 189, 248, 0.2);
+      --border-subtle: #1f2937;
+      --border-strong: #4b5563;
+      --progress-track: #111827;
+      --progress-fill: linear-gradient(90deg, #60a5fa, #818cf8);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* Splash screen */
+
+    #splash-screen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.5), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(129,140,248,0.5), transparent 55%),
+        #020617;
+    }
+
+    #splash-screen.hidden {
+      display: none;
+    }
+
+    .splash-card {
+      background: #020617;
+      border-radius: 32px;
+      box-shadow: var(--shadow-soft);
+      padding: 2.75rem 3.25rem 3.25rem;
+      max-width: 820px;
+      width: min(92vw, 820px);
+      border: 1px solid rgba(148,163,184,0.4);
+      color: #e5e7eb;
+    }
+
+    .splash-cover {
+      width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+      border-radius: 20px;
+      display: block;
+      margin: 0 auto 2rem;
+      box-shadow: 0 22px 60px rgba(15,23,42,0.8);
+    }
+
+    .splash-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 2.4vw + 1.2rem, 2.4rem);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 0 0.75rem;
+    }
+
+    .splash-subtitle {
+      font-size: 0.98rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 0 0 1.5rem;
+      color: #9ca3af;
+    }
+
+    .splash-meta {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 2.25rem;
+    }
+
+    .splash-meta span {
+      display: block;
+    }
+
+    .splash-actions {
+      display: flex;
+      justify-content: center;
+    }
+
+    .splash-button {
+      border-radius: 999px;
+      border: none;
+      padding: 0.85rem 2.75rem;
+      font-weight: 600;
+      font-size: 0.98rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-image: linear-gradient(135deg, #2563eb, #4f46e5, #22c1c3);
+      color: #f9fafb;
+      box-shadow: 0 14px 35px rgba(37,99,235,0.65);
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .splash-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 40px rgba(37,99,235,0.75);
+    }
+
+    .splash-button:active {
+      transform: translateY(0);
+      box-shadow: 0 10px 24px rgba(37,99,235,0.7);
+    }
+
+    /* Reader shell */
+
+    #reader {
+      display: none;
+      height: 100vh;
+    }
+
+    #reader.visible {
+      display: flex;
+    }
+
+    .reader-shell {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-body);
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      min-width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-subtle);
+      padding: 1.25rem 1rem 1.5rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      overflow-y: auto;
+    }
+
+    .sidebar-header {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted-text);
+      margin-bottom: 0.35rem;
+    }
+
+    .search-box {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+
+    .search-box input {
+      width: 100%;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 0.8rem;
+      font-size: 0.85rem;
+      background: #ffffff;
+      outline: none;
+    }
+
+    body.dark-mode .search-box input {
+      background: #020617;
+      color: #e5e7eb;
+      border-color: #1f2937;
+    }
+
+    .toc-group {
+      margin-bottom: 0.75rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      border: 1px solid transparent;
+    }
+
+    .toc-group.open {
+      border-color: var(--border-subtle);
+      background: rgba(148, 163, 184, 0.04);
+    }
+
+    .toc-group-header {
+      width: 100%;
+      border: none;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+     	color: var(--muted-text);
+      cursor: pointer;
+    }
+
+    .toc-group-header span.chevron {
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+
+    .toc-group-body {
+      display: none;
+      padding: 0.15rem 0.1rem 0.4rem;
+    }
+
+    .toc-group.open .toc-group-body {
+      display: block;
+    }
+
+    .toc-item {
+      width: 100%;
+      border: none;
+      background: transparent;
+      text-align: left;
+      padding: 0.38rem 0.55rem;
+      border-radius: 0.5rem;
+      font-size: 0.86rem;
+      color: var(--text-color);
+      cursor: pointer;
+      display: block;
+    }
+
+    .toc-item:hover {
+      background: var(--bg-sidebar-hover);
+    }
+
+    .toc-item.active {
+      background: var(--bg-sidebar-active);
+      color: #f9fafb;
+    }
+
+    .reader-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at top, rgba(148,163,184,0.22), transparent 52%), var(--bg-body);
+      padding: 1.5rem 1.5rem 1.5rem 0.75rem;
+      box-sizing: border-box;
+    }
+
+    .reader-panel {
+      background: var(--bg-content);
+      border-radius: var(--shell-radius);
+      box-shadow: var(--shadow-soft);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .reader-header {
+      padding: 0.9rem 1.3rem 0.6rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .current-location {
+      font-size: 0.88rem;
+      color: var(--muted-text);
+    }
+
+    .current-location strong {
+      color: var(--text-color);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      font-size: 0.75rem;
+      background: var(--bg-chip);
+      color: var(--chip-text);
+    }
+
+    .control-button {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      background: transparent;
+      color: var(--text-color);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .control-button:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .control-button.primary {
+      background-image: linear-gradient(135deg, #2563eb, #4f46e5);
+      border-color: transparent;
+      color: #f9fafb;
+    }
+
+    .control-button.primary:hover {
+      filter: brightness(1.05);
+    }
+
+    .reader-progress {
+      padding: 0.3rem 1.3rem 0.7rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .progress-label-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: var(--muted-text);
+      margin-bottom: 0.25rem;
+    }
+
+    .progress-track {
+      position: relative;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--progress-track);
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background-image: var(--progress-fill);
+      transition: width 120ms linear;
+    }
+
+    .reader-body {
+      flex: 1;
+      position: relative;
+      background: var(--bg-content);
+    }
+
+    .content-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 0 0 var(--shell-radius) var(--shell-radius);
+      background: transparent;
+    }
+
+    @media (max-width: 980px) {
+      .reader-shell {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        flex-direction: column;
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .reader-main {
+        padding: 0.75rem;
+      }
+      .reader-panel {
+        border-radius: 20px;
+      }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <!-- Splash / entrance screen -->
+  <div id="splash-screen">
+    <div class="splash-card">
+      <img src="Front Cover.png" alt="The Infinity Loop cover" class="splash-cover" />
+      <h1 class="splash-title">THE INFINITY LOOP</h1>
+      <p class="splash-subtitle">Race, Power, and the Machinery of Control</p>
+      <div class="splash-meta">
+        <span>By K. R. Miller</span>
+        <span>Interactive reading edition</span>
+      </div>
+      <div class="splash-actions">
+        <button id="enter-book" class="splash-button">
+          ENTER BOOK
+          <span aria-hidden="true">➜</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reader -->
+  <div id="reader">
+    <div class="reader-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">Table of Contents</div>
+        <div class="search-box">
+          <input id="toc-search" type="search" placeholder="Search chapter titles..." />
+        </div>
+        <nav id="toc-container" aria-label="Book sections"></nav>
+      </aside>
+
+      <main class="reader-main">
+        <section class="reader-panel">
+          <header class="reader-header">
+            <div class="current-location">
+              Currently viewing: <strong id="current-title">Select a section to begin reading</strong>
+            </div>
+            <div class="header-actions">
+              <span class="chip" id="theme-chip">Light mode</span>
+              <button id="resume-button" class="control-button">
+                Resume
+              </button>
+              <button id="dark-toggle" class="control-button">
+                Dark mode
+              </button>
+            </div>
+          </header>
+          <section class="reader-progress">
+            <div class="progress-label-row">
+              <span>Reading progress</span>
+              <span id="progress-text">0%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </section>
+          <section class="reader-body">
+            <iframe id="content-frame" class="content-frame" title="Infinity Loop chapter"></iframe>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // --------- Book structure (display titles + filenames) ----------
+    const bookStructure = [
+      {
+        group: "ABOUT THE AUTHOR",
+        items: [
+          { title: "ABOUT THE AUTHOR", file: "ABOUT_THE_AUTHOR_.htm" },
+          { title: "ACKNOWLEDGMENTS", file: "ACKNOWLEDGMENTS_.htm" }
+        ]
+      },
+      {
+        group: "FRONT MATTER",
+        items: [
+          { title: "CONTENT WARNING", file: "CONTENT_WARNING_.htm" },
+          { title: "A NOTE ON LANGUAGE AND TERMINOLOGY", file: "A_NOTE_ON_LANGUAGE_AND_TERMINOLOGY_.htm" },
+          { title: "AUTHOR'S PREFACE – UNDERSTANDING THE INFINITY LOOP", file: "AUTHOR'S_PREFACE_UNDERSTANDING_THE_INFINITY_LOOP_.htm" },
+          { title: "HOW TO USE THIS BOOK – A READER'S GUIDE", file: "HOW_TO_USE_THIS_BOOK_A_READER'S_GUIDE_.htm" },
+          { title: "EPIGRAPH", file: "Epigraph_.htm" }
+        ]
+      },
+      {
+        group: "MAIN CHAPTERS",
+        items: [
+          { title: "CHAPTER 1", file: "CHAPTER_1_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 2", file: "CHAPTER_2_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 3", file: "CHAPTER_3_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 4", file: "CHAPTER_4_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 5", file: "CHAPTER_5_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 6", file: "CHAPTER_6_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 7", file: "CHAPTER_7_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 8", file: "CHAPTER_8_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 9", file: "CHAPTER_9_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 10", file: "CHAPTER_10_clean_stitched_formatted.htm" },
+          { title: "CHAPTER 11", file: "CHAPTER_11_clean_stitched_formatted.htm" }
+        ]
+      },
+      {
+        group: "APPENDICES",
+        items: [
+          { title: "APPENDIX A – LOOP MECHANISM GLOSSARY", file: "APPENDIX_A_LOOP MECHANISM GLOSSARY_.htm" },
+          { title: "APPENDIX B – HISTORICAL TIMELINE (1619–2025)", file: "APPENDIX_B_HISTORICAL TIMELINE (1619-2025)_.htm" },
+          { title: "APPENDIX C – METHODOLOGY AND SOURCES", file: "APPENDIX_C_METHODOLOGY AND SOURCES_.htm" }
+        ]
+      },
+      {
+        group: "NOTES & SOURCES",
+        items: [
+          { title: "NOTE ON SOURCES AND METHODOLOGY", file: "NOTE_ON_SOURCES_AND_METHODOLOGY_.htm" },
+          { title: "TIER 1 – PRIMARY SOURCES", file: "TIER_1_PRIMARY SOURCES_.htm" },
+          { title: "TIER 2 – SECONDARY SCHOLARLY SOURCES", file: "TIER_2_SECONDARY SCHOLARLY SOURCES_.htm" },
+          { title: "TIER 3 – JOURNALISTIC & COMMENTARY SOURCES", file: "TIER_3_JOURNALISTIC AND COMMENTARY SOURCES_.htm" },
+          { title: "WORKS CITED", file: "Works_Cited_.htm" },
+          { title: "FINAL NOTES FOR PUBLICATION", file: "FINAL_NOTES_FOR_PUBLICATION_.htm" }
+        ]
+      }
+    ];
+
+    // --------- DOM references ----------
+    const splashScreen = document.getElementById("splash-screen");
+    const enterButton = document.getElementById("enter-book");
+    const reader = document.getElementById("reader");
+    const tocContainer = document.getElementById("toc-container");
+    const searchInput = document.getElementById("toc-search");
+    const contentFrame = document.getElementById("content-frame");
+    const currentTitleEl = document.getElementById("current-title");
+    const resumeButton = document.getElementById("resume-button");
+    const darkToggle = document.getElementById("dark-toggle");
+    const themeChip = document.getElementById("theme-chip");
+    const progressFill = document.getElementById("progress-fill");
+    const progressText = document.getElementById("progress-text");
+
+    let isDarkMode = false;
+    let currentFile = null;
+    let currentScrollHandler = null;
+
+    // --------- Helper: theme CSS for iframe ----------
+    function getInnerThemeCss(isDark) {
+      if (!isDark) {
+        return `
+          body {
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 0 1.5rem 4rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: #ffffff;
+            color: #111827;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+            table-layout: fixed;
+          }
+          th, td {
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #d1d5db;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #ffffff;
+            color: #111827;
+          }
+          h1, h2, h3, h4 {
+            font-family: "Georgia", "Times New Roman", serif;
+          }
+        `;
+      } else {
+        return `
+          body {
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 0 1.5rem 4rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background: #020617;
+            color: #e5e7eb;
+          }
+          table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 100%;
+            table-layout: fixed;
+          }
+          th, td {
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #4b5563;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #020617;
+            color: #e5e7eb;
+          }
+          h1, h2, h3, h4 {
+            font-family: "Georgia", "Times New Roman", serif;
+          }
+        `;
+      }
+    }
+
+    function applyThemeToIframe() {
+      try {
+        const win = contentFrame.contentWindow;
+        if (!win) return;
+        const doc = win.document;
+        if (!doc || !doc.head) return;
+
+        let styleEl = doc.getElementById("loop-theme-style");
+        const css = getInnerThemeCss(isDarkMode);
+
+        if (!styleEl) {
+          styleEl = doc.createElement("style");
+          styleEl.id = "loop-theme-style";
+          styleEl.textContent = css;
+          doc.head.appendChild(styleEl);
+        } else {
+          styleEl.textContent = css;
+        }
+
+        // Strip inline light backgrounds from Word so our CSS can control contrast
+        doc.querySelectorAll("th[style], td[style]").forEach((cell) => {
+          cell.style.backgroundColor = "transparent";
+          cell.style.color = "";
+        });
+      } catch (err) {
+        console.warn("Could not apply theme to iframe:", err);
+      }
+    }
+
+    // --------- Scroll / progress ----------
+    function attachScrollTracking() {
+      try {
+        const win = contentFrame.contentWindow;
+        if (!win) return;
+        const doc = win.document;
+        if (!doc) return;
+
+        if (currentScrollHandler) {
+          win.removeEventListener("scroll", currentScrollHandler);
+        }
+
+        const key = currentFile ? "loopProgress:" + currentFile : null;
+
+        const handler = () => {
+          const scrollTop = win.scrollY || doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+          const scrollHeight = doc.documentElement.scrollHeight || doc.body.scrollHeight || 1;
+          const clientHeight = win.innerHeight || doc.documentElement.clientHeight || 1;
+          const raw = scrollHeight <= clientHeight ? 1 : scrollTop / (scrollHeight - clientHeight);
+          const percent = Math.max(0, Math.min(1, raw));
+          const pctInt = Math.round(percent * 100);
+          progressFill.style.width = pctInt + "%";
+          progressText.textContent = pctInt + "%";
+          if (key) {
+            localStorage.setItem(key, String(pctInt));
+          }
+        };
+
+        currentScrollHandler = handler;
+        win.addEventListener("scroll", handler);
+
+        // Restore previous progress if present
+        if (key) {
+          const previous = parseFloat(localStorage.getItem(key));
+          if (!Number.isNaN(previous)) {
+            const target = (doc.documentElement.scrollHeight - win.innerHeight) * (previous / 100);
+            win.scrollTo(0, target);
+            progressFill.style.width = previous + "%";
+            progressText.textContent = previous + "%";
+          } else {
+            progressFill.style.width = "0%";
+            progressText.textContent = "0%";
+          }
+        }
+      } catch (err) {
+        console.warn("Could not attach scroll tracking:", err);
+      }
+    }
+
+    // --------- Load a section ----------
+    function loadSection(item, fromResume = false) {
+      if (!item) return;
+      currentFile = item.file;
+      currentTitleEl.textContent = item.title;
+
+      // highlight active
+      document.querySelectorAll(".toc-item").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.file === item.file);
+      });
+
+      // Show reader view if coming from splash
+      if (!reader.classList.contains("visible")) {
+        splashScreen.classList.add("hidden");
+        reader.classList.add("visible");
+      }
+
+      contentFrame.src = item.file;
+
+      // Save last opened section
+      try {
+        localStorage.setItem("loopCurrentFile", item.file);
+      } catch (err) {
+        console.warn("Could not store last section:", err);
+      }
+
+      // After load, apply theme + scroll tracking
+      contentFrame.onload = () => {
+        applyThemeToIframe();
+        attachScrollTracking();
+      };
+    }
+
+    // --------- TOC building ----------
+    function buildTOC() {
+      tocContainer.innerHTML = "";
+      bookStructure.forEach((group, groupIndex) => {
+        const groupEl = document.createElement("div");
+        groupEl.className = "toc-group";
+        if (groupIndex < 2) {
+          groupEl.classList.add("open");
+        }
+
+        const headerBtn = document.createElement("button");
+        headerBtn.type = "button";
+        headerBtn.className = "toc-group-header";
+        headerBtn.innerHTML = `<span>${group.group}</span><span class="chevron">▾</span>`;
+        headerBtn.addEventListener("click", () => {
+          groupEl.classList.toggle("open");
+        });
+
+        const body = document.createElement("div");
+        body.className = "toc-group-body";
+
+        group.items.forEach((item) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "toc-item";
+          btn.textContent = item.title;
+          btn.dataset.file = item.file;
+          btn.dataset.title = item.title;
+          btn.addEventListener("click", () => loadSection(item));
+          body.appendChild(btn);
+        });
+
+        groupEl.appendChild(headerBtn);
+        groupEl.appendChild(body);
+        tocContainer.appendChild(groupEl);
+      });
+    }
+
+    // --------- Search filter ----------
+    function handleSearch() {
+      const q = searchInput.value.trim().toLowerCase();
+      const items = tocContainer.querySelectorAll(".toc-item");
+      if (!q) {
+        items.forEach((btn) => {
+          btn.style.display = "block";
+        });
+        return;
+      }
+      items.forEach((btn) => {
+        const match = btn.dataset.title.toLowerCase().includes(q);
+        btn.style.display = match ? "block" : "none";
+      });
+    }
+
+    // --------- Theme toggle ----------
+    function updateThemeUI() {
+      document.body.classList.toggle("dark-mode", isDarkMode);
+      document.body.classList.toggle("light-mode", !isDarkMode);
+      themeChip.textContent = isDarkMode ? "Dark mode" : "Light mode";
+      darkToggle.textContent = isDarkMode ? "Light mode" : "Dark mode";
+      try {
+        localStorage.setItem("loopDarkMode", isDarkMode ? "1" : "0");
+      } catch (err) {}
+      applyThemeToIframe();
+    }
+
+    function toggleDarkMode() {
+      isDarkMode = !isDarkMode;
+      updateThemeUI();
+    }
+
+    // --------- Resume logic ----------
+    function findItemByFile(file) {
+      for (const group of bookStructure) {
+        for (const item of group.items) {
+          if (item.file === file) return item;
+        }
+      }
+      return null;
+    }
+
+    function openInitialSection() {
+      let lastFile = null;
+      try {
+        lastFile = localStorage.getItem("loopCurrentFile");
+      } catch (err) {}
+      const item = lastFile ? findItemByFile(lastFile) : bookStructure[2].items[0]; // default: CH 1
+      loadSection(item, true);
+    }
+
+    // --------- Init ----------
+    function init() {
+      // Load theme
+      try {
+        const stored = localStorage.getItem("loopDarkMode");
+        if (stored === "1") {
+          isDarkMode = true;
+        }
+      } catch (err) {}
+      updateThemeUI();
+
+      buildTOC();
+
+      enterButton.addEventListener("click", openInitialSection);
+      resumeButton.addEventListener("click", openInitialSection);
+      darkToggle.addEventListener("click", toggleDarkMode);
+      searchInput.addEventListener("input", handleSearch);
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>
