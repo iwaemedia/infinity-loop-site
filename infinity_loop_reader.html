@@ -188,6 +188,57 @@
     #reader.visible {
       display: flex;
     }
+/* Splash layout: make the cover big and centered without requiring scroll */
+
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.splash-card {
+  /* Use most of the viewport */
+  width: min(80vw, 900px);
+  height: min(90vh, 1100px);
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), rgba(15, 23, 42, 0.98));
+  border-radius: 1.25rem;
+  padding: 24px 24px 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.splash-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+}
+
+.cover-frame {
+  flex: 1;
+  border-radius: 1rem;
+  background: #020617;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* This is the key bit: let the cover image expand inside that frame */
+.splash-cover {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;      /* fill available width */
+  height: auto;     /* keep aspect ratio */
+  object-fit: contain;
+  display: block;
+}
 
     .reader-shell {
       display: flex;
